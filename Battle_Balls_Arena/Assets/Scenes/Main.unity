@@ -1033,7 +1033,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyCamera: {fileID: 429823243}
   m_Rigidbody: {fileID: 947548913}
-  m_Axis: {x: 0, y: 1, z: 0}
   m_MaxForce: 3000
   m_TimeToMaxForce: 2
   m_ForceSlider: {fileID: 1067147603}
