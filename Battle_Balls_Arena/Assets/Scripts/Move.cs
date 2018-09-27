@@ -5,7 +5,7 @@ using UnityEngine;
 public class Move : MonoBehaviour {
 	public Camera MyCamera;
 	public Rigidbody rb;
-	private float noMovementThreshold = 0.001f;
+	private float noMovementThreshold = 0.002f;
 	private const int noMovementFrames = 3;
 	Vector3[] previousLocations = new Vector3[noMovementFrames];
 	private bool isMoving;
@@ -51,18 +51,12 @@ public class Move : MonoBehaviour {
 			}
 		}
 	}
-
-
-
-
-
-
-
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (Input.GetMouseButton(0)) {
-			Vector3 movement = MyCamera.transform.forward * 300;
+			Debug.Log(Vector3.Scale(MyCamera.transform.forward, Vector3.forward + Vector3.right));
+			Vector3 movement = Vector3.Scale(MyCamera.transform.forward, Vector3.forward + Vector3.right) * 500;
 			rb.AddForce(movement);
 		}
 	}

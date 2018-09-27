@@ -15,32 +15,38 @@ public class MouseCamera : MonoBehaviour {
     }
      
     void LateUpdate() {
-        if (Input.GetMouseButton(1)) {
-            PositionCamera();
-        }
+        PositionCamera();
     }
 
     void PositionCamera() {
         float horizontal;
 
-        if (target.GetComponent<Move>().IsMoving) {
+        if (Input.GetMouseButton(1)) {
             horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-            target.transform.Rotate(0, horizontal, 0);
-
-            float desiredAngle = target.transform.eulerAngles.y;
-            transform.position = target.transform.position - (offset);
+            transform.RotateAround(target.transform.position, target.transform.up, horizontal);
+           /* float desiredAngle = target.transform.eulerAngles.y;
+            Debug.Log(desiredAngle);
+            Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
+            transform.position = target.transform.position - (rotation * offset);*/
+            transform.LookAt(target.transform);
         }
         else {
-            horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-            target.transform.Rotate(0, horizontal, 0);
+            if (target.GetComponent<Move>().IsMoving) {
+                float desiredAngle = target.transform.eulerAngles.y;
+                transform.position = target.transform.position - offset;
 
-            float desiredAngle = target.transform.eulerAngles.y;
-            Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-            transform.position = target.transform.position - (rotation * offset);
+                transform.LookAt(target.transform.position, Vector3.up);
+            }
+            else {
+                horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
+                target.transform.Rotate(0, horizontal, 0);
+
+                float desiredAngle = target.transform.eulerAngles.y;
+                Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
+                transform.position = target.transform.position - (rotation * offset);
+
+                transform.LookAt(target.transform);
+            }
         }
-        
-        
-        
-        transform.LookAt(target.transform);
     }
 }
