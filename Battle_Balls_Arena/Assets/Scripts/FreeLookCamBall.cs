@@ -48,13 +48,13 @@ namespace UnityStandardAssets.Cameras
             {
                 if (Input.GetKeyUp(KeyCode.Escape))
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                 }
                 else if (Input.GetMouseButtonUp(0))
                 {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;   
                 }
             }
         }

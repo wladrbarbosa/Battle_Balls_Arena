@@ -31,7 +31,7 @@ public class MouseCamera : MonoBehaviour {
             transform.LookAt(target.transform);
         }
         else {
-            if (target.GetComponent<Move>().IsMoving) {
+            if (!target.GetComponent<Rigidbody>().IsSleeping()) {
                 float desiredAngle = target.transform.eulerAngles.y;
                 transform.position = target.transform.position - offset;
 
