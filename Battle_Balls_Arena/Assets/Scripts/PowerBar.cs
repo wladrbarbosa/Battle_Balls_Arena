@@ -23,6 +23,12 @@ public class PowerBar : MonoBehaviour {
     private bool m_Shoot;
 	private ShooterState m_CurrentState = ShooterState.None;
 	private float m_ForceDirection = 1;
+    Mechanics mech;
+	public GameObject mechObj;
+
+    void Awake () {
+		mech = mechObj.GetComponent<Mechanics>();
+	}
    	private void Update()
     {
         if (m_CurrentState == ShooterState.None && Input.GetMouseButtonDown(0))
@@ -60,6 +66,8 @@ public class PowerBar : MonoBehaviour {
 			if (m_Rigidbody.IsSleeping())
 			{
 				m_CurrentState = ShooterState.None;
+                Debug.Log("Foi!!!");
+                mech.ChangeTurn();
 			}
     }
 }
